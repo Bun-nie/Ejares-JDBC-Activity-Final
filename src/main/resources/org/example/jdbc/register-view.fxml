@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="pnLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@register_page_style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jdbc.RegisterController">
+    <left>
+        <AnchorPane id="left_anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="194.0" fitWidth="194.0" layoutX="3.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../resources/logo.png" />
+                    </image>
+                </ImageView>
+            <Button fx:id="btnBackToLogin" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onToLoginButtonClick" text="&lt;" />
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane id="right_anchor" prefHeight="400.0" prefWidth="1237.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="126.0" fitWidth="135.0" layoutX="137.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../resources/profile.png" />
+                    </image>
+                </ImageView>
+                <Label id="lblUsername" fx:id="lblUsername" layoutX="69.0" layoutY="193.0" text="Username" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            <Label layoutX="69.0" layoutY="229.0" text="E-mail" />
+                <Label id="lblPassword" layoutX="69.0" layoutY="264.0" text="Password" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tfUsername" layoutX="181.0" layoutY="192.0" promptText="Enter Username" />
+            <TextField fx:id="tfEmail" layoutX="181.0" layoutY="228.0" promptText="example@gmail.com" />
+                <PasswordField fx:id="pfPassword" layoutX="181.0" layoutY="263.0" promptText="Enter Password" />
+                <Button fx:id="btnRegister" layoutX="175.0" layoutY="309.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" text="Register" />
+                <Label fx:id="success" alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="154.0" prefHeight="23.0" prefWidth="244.0" textAlignment="CENTER" />
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>

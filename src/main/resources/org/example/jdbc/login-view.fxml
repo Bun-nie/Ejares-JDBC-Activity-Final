@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="pnLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@login_page_style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jdbc.LoginController">
+    <left>
+        <AnchorPane id="left_anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="194.0" fitWidth="194.0" layoutX="3.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../resources/logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane id="right_anchor" prefHeight="400.0" prefWidth="1237.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="126.0" fitWidth="135.0" layoutX="138.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../resources/profile.png" />
+                    </image>
+                </ImageView>
+                <Label id="lblUsername" layoutX="69.0" layoutY="193.0" text="Username" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label id="lblPassword" layoutX="69.0" layoutY="243.0" text="Password" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tfUsername" layoutX="181.0" layoutY="192.0" promptText="Enter Username" />
+                <PasswordField fx:id="pfPassword" layoutX="181.0" layoutY="242.0" promptText="Enter Password" />
+                <Button fx:id="btnLogin" layoutX="167.0" layoutY="286.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Log In" />
+                <Label id="wrong" fx:id="wrong" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="158.0" prefHeight="23.0" prefWidth="146.0" textAlignment="CENTER" />
+            <Button id="btnToRegister" fx:id="btnToRegister" layoutX="226.0" layoutY="334.0" mnemonicParsing="false" onAction="#onToRegisterButtonClick" text="Register" />
+            <Label fx:id="sentence" layoutX="115.0" layoutY="339.0" text="No account yet?" />
+            <ToggleButton fx:id="btnShow" layoutX="338.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#onShowButtonClick" onMouseExited="#onShowButtonUnclick" onMousePressed="#onShowButtonClick" onMouseReleased="#onShowButtonUnclick" text="()" />
+            <TextField id="tfPassword" fx:id="tfPassword" layoutX="180.0" layoutY="241.0" prefHeight="26.0" prefWidth="150.0" visible="false" />
+            </children>
+        </AnchorPane>
+    </right>
+</BorderPane>
