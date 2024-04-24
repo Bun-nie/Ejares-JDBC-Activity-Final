@@ -128,25 +128,40 @@ public class HomepageController {
 
     public void onDeleteAccountClick(){
         try (Connection c = MySQLConnection.getConnection();
-             PreparedStatement statement = c.prepareStatement(
-                     "DELETE FROM users WHERE name=?"
+             PreparedStatement deletePostsStatement = c.prepareStatement(
+                     "DELETE FROM posts WHERE acctid=?"
+             );
+             PreparedStatement deleteUserStatement = c.prepareStatement(
+                     "DELETE FROM users WHERE userid=?"
              )) {
-            String username = LoginController.currentName;
-            statement.setString(1, username);
-            statement.executeUpdate();
+            c.setAutoCommit(false);
+            int userId = LoginController.currentID;
+
+            deletePostsStatement.setInt(1, userId);
+            deletePostsStatement.executeUpdate();
+
+            deleteUserStatement.setInt(1, userId);
+            deleteUserStatement.executeUpdate();
+
+            c.commit();
 
             Stage stage = (Stage) btnDeleteAccount.getScene().getWindow();
             stage.close();
-            // Parent p = FXMLLoader.load(getClass().getResource("home-view.fxml"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
             Parent p = loader.load();
             Scene s = new Scene(p);
             stage.setScene(s);
             stage.show();
         } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            try(Connection c = MySQLConnection.getConnection()) {
+                c.rollback();
+            } catch (SQLException s) {
+                s.printStackTrace();
+            }
         }
     }
+
 
     public void onToPasswordChangeClick() throws IOException {
         Stage stage = (Stage) btnToChangePassword.getScene().getWindow();

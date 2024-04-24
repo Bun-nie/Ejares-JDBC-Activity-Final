@@ -16,8 +16,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         CreateTable ct = new CreateTable();
-        ct.create_tbl_users();
-        ct.create_tbl_posts();
+        ct.create_tables();
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 590, 420);
