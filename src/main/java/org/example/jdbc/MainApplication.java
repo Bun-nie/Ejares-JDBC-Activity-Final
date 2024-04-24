@@ -23,6 +23,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 590, 420);
         stage.setTitle("Log In Page");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

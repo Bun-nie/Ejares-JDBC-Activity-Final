@@ -24,5 +24,7 @@
         </columns>
       </TableView>
       <Button fx:id="btnLogout" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" text="Log Out" />
+      <Button fx:id="btnToChangePassword" layoutX="458.0" layoutY="48.0" mnemonicParsing="false" onAction="#onToPasswordChangeClick" text="Change Password" />
+      <Button fx:id="btnDeleteAccount" layoutX="475.0" layoutY="16.0" mnemonicParsing="false" onAction="#onDeleteAccountClick" text="Delete Account" />
    </children>
 </AnchorPane>

@@ -39,6 +39,8 @@ public class HomepageController {
     public Button btnDelete;
     @FXML
     public Button btnLogout;
+    public Button btnToChangePassword;
+    public Button btnDeleteAccount;
     int index, postid;
 
     public void onPostClick(ActionEvent ae){
@@ -46,6 +48,10 @@ public class HomepageController {
             PreparedStatement statement = c.prepareStatement(
                     "INSERT INTO posts(acctid, title, content) VALUES (?,?,?)"
             )) {
+            if(tfTitle.getText().isEmpty() || taContent.getText().isEmpty()){
+                notif.setText("Nothing to post!");
+                return;
+            }
             int acctid = LoginController.currentID;
             String title = tfTitle.getText();
             String content = taContent.getText();
@@ -119,10 +125,43 @@ public class HomepageController {
         stage.setScene(s);
         stage.show();
     }
+
+    public void onDeleteAccountClick(){
+        try (Connection c = MySQLConnection.getConnection();
+             PreparedStatement statement = c.prepareStatement(
+                     "DELETE FROM users WHERE name=?"
+             )) {
+            String username = LoginController.currentName;
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+            Stage stage = (Stage) btnDeleteAccount.getScene().getWindow();
+            stage.close();
+            // Parent p = FXMLLoader.load(getClass().getResource("home-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            Parent p = loader.load();
+            Scene s = new Scene(p);
+            stage.setScene(s);
+            stage.show();
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void onToPasswordChangeClick() throws IOException {
+        Stage stage = (Stage) btnToChangePassword.getScene().getWindow();
+        stage.close();
+        // Parent p = FXMLLoader.load(getClass().getResource("home-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("password-view.fxml"));
+        Parent p = loader.load();
+        Scene s = new Scene(p);
+        stage.setScene(s);
+        stage.show();
+    }
     public void displayContents(int currentUserId) {
         ObservableList<Post> posts = FXCollections.observableArrayList();
         try (Connection c = MySQLConnection.getConnection();
-             PreparedStatement statement = c.prepareStatement("SELECT * FROM posts WHERE acctid = ?");
+             PreparedStatement statement = c.prepareStatement("SELECT * FROM posts WHERE acctid = ?")
         ) {
             statement.setInt(1, currentUserId);
             ResultSet rs = statement.executeQuery();
